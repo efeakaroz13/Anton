@@ -17,12 +17,16 @@
 </head>
 <body>
 	<h1>Web Sayfam</h1>
-    <p>Merhaba bu bir deneme yazısı ve demo için yazıldı</p>
+    <p>Merhaba bu bir deneme yazısı ve demo için yazıldı.</p>
 
 	<code>
-	  	#Copyright (c) 2022, Efe Akaröz<br>
+	  	#Copyright (c) 2022, Efe Akaröz.<br>
 		#All rights reserved.
 	</code>
-    <button onclick="voiceover()" style="position:fixed;bottom:10px;left:10px;">TTS</button>
+    <div style="position:fixed;bottom:80px;left:10px;border:1px solid#000;display:none" id="menu">
+        <button>🇫🇷</button><button>🇹🇷</button><button>🇬🇧</button><button>🇩🇪</button>
+    </div>
+    <button onclick="openSelectorMenu()" style="position:fixed;bottom:10px;left:10px;">TTS - Translate</button>
+
 </body>
 </html>

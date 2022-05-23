@@ -1,3 +1,8 @@
+/*
+#Copyright (c) 2022, Efe Akaröz.
+#All rights reserved.
+*/
+
 let speech = new SpeechSynthesisUtterance();
 function textToSpeech(content){
 	speech.lang = "tr-TR";
@@ -14,9 +19,7 @@ function getTextOfPage(){
 	return body.textContent.replace("\n","..").replace("TTS","");
 }
 
-function voiceover(){
-	textToSpeech(getTextOfPage());
 
+function openSelectorMenu(){
+	document.getElementById("menu").style.display = "";
 }
-/* Highlight reading*/
-
