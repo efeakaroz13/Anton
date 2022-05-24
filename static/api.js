@@ -16,10 +16,32 @@ function textToSpeech(content){
 }
 function getTextOfPage(){
 	var body= document.body;
-	return body.textContent.replace("\n","..").replace("TTS","");
+	return body.textContent.replace("\n",".").replace("TTS","");
 }
 
 
 function openSelectorMenu(){
-	document.getElementById("menu").style.display = "";
+	if (document.getElementById("menu").style.display == "none") {
+		document.getElementById("menu").style.display = "";
+	}else{
+		document.getElementById("menu").style.display = "none";
+	}
+	
+}
+function french(){
+	console.log("a")
+	$.getJSON("/translate?"+"from=tr"+"&to=fr&"+"q="+getTextOfPage().replace("&","").replace("?","").replace("\n","."),function(out){
+		console.log(out.out)
+		const wordslist = []
+		var splitter = out.out.split(".")
+		for (var s = splitter.length - 1; s >= 0; s--) {
+			wordslist.push(splitter[s])
+		};
+		document.body.innerHTML = "";
+		for (var i = wordslist.length - 1; i >= 0; i--) {
+			document.body.innerHTML = document.body.innerHTML+"<p>"+wordslist[i]+"</p>"
+		};
+		
+	})
+	
 }

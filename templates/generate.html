@@ -1,0 +1,9 @@
+<h2>Translate and Text To Speech(Anton)</h2>
+<form action="" method="POST">
+	<textarea name="mytextarea" placeholder="Enter Something To Say"></textarea>
+	<br><br>
+	<button>Start</button>
+	{% for v in voices %}
+	<p>{{v}}{{voices.index(v)}}</p>
+	{% endfor %}
+</form>
