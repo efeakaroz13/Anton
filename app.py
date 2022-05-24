@@ -7,6 +7,9 @@ from textblob import TextBlob
 from deep_translator import single_detection
 import translators as ts
 import random
+import pyttsx3
+import os
+
 
 #f2e29ae59187dddd8e935acfc34e6ba0
 
@@ -23,20 +26,79 @@ def demo():
 
 @app.route("/tts")
 def tts():
-	engine = pyttsx3.init()
-	voices = engine.getProperty('voices')
+	lang  = request.args.get("lang")
+	if lang == "tr":
+		#TR
+		engine = pyttsx3.init()
+		voices = engine.getProperty('voices')
+		lang  = request.args.get("lang")
+		text = request.args.get("q")
+		engine.setProperty('voice', voices[42].id)
+		engine. setProperty("rate", 178)
+		filename = 'speechTR{}.mp3'.format(random.randint(1,345346456))
+		engine.save_to_file(text, filename)
+		engine.runAndWait()
+		os.system(f"autosub {filename} -S tr -D tr")
+		os.system(f"ffmpeg -loop 1 -i image.jpg -i {filename} -c:a copy -c:v libx264 -shortest {filename.replace('.mp3','.mp4')}")
+		return {
+			"out":filename.replace("mp3","mp4"),
+			"transcript":filename.replace("mp3","srt")
+		}
+	if lang == "fr":
+		#FR
+		engine = pyttsx3.init()
+		voices = engine.getProperty('voices')
+		lang  = request.args.get("lang")
+		text = request.args.get("q")
+		engine.setProperty('voice', voices[37].id)
+		engine. setProperty("rate", 150)
+		filename = 'speechFR{}.mp3'.format(random.randint(1,345346456))
+		engine.save_to_file(text, filename)
+		engine.runAndWait()
+		os.system(f"autosub {filename} -S fr -D fr")
+		os.system(f"ffmpeg -loop 1 -i image.jpg -i {filename} -c:a copy -c:v libx264 -shortest {filename.replace('.mp3','.mp4')}")
+		return {
+			"out":filename.replace("mp3","mp4"),
+			"transcript":filename.replace("mp3","srt")
+		}
 
-	#TR
-	text = request.args.get("q")
-	engine.setProperty('voice', 7)
-	engine. setProperty("rate", 178)
-	filename = 'speechEN{}.mp3'.format(random.randint(1,345346456)
-	engine.save_to_file(text, filename))
-	engine.runAndWait()
-	return {
-	"out":filename,
-	"transcript":""
-	}
+	if lang == "de":
+
+		#DE
+		engine = pyttsx3.init()
+		voices = engine.getProperty('voices')
+		lang  = request.args.get("lang")
+		text = request.args.get("q")
+		engine.setProperty('voice',voices[4].id)
+		engine. setProperty("rate", 150)
+		filename = 'speechDE{}.mp3'.format(random.randint(1,345346456))
+		engine.save_to_file(text, filename)
+		engine.runAndWait()
+		os.system(f"autosub {filename} -S de -D de")
+		os.system(f"ffmpeg -loop 1 -i image.jpg -i {filename} -c:a copy -c:v libx264 -shortest {filename.replace('.mp3','.mp4')}")
+		return {
+			"out":filename.replace("mp3","mp4"),
+			"transcript":filename.replace("mp3","srt")
+		}
+
+	if lang == "en":
+		#EN
+		engine = pyttsx3.init()
+		voices = engine.getProperty('voices')
+		lang  = request.args.get("lang")
+		text = request.args.get("q")
+		engine.setProperty('voice', voices[7].id)
+		engine. setProperty("rate", 150)
+		filename = './static/speechEN{}.mp3'.format(random.randint(1,345346456))
+		engine.save_to_file(text, filename)
+		engine.runAndWait()
+		os.system(f"autosub {filename} -S en -D en")
+		os.system(f"ffmpeg -loop 1 -i image.jpg -i {filename} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest {filename.replace('.mp3','.mp4')}")
+		os.system("rm {}".format(filename))
+		return {
+			"out":filename.replace("mp3","mp4"),
+			"transcript":filename.replace("mp3","srt")
+		}
 @app.route("/textLangDetect")
 def textLangDetect():
 	q = request.args.get("q")
