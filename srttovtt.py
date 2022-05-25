@@ -1,16 +1,20 @@
 import os
 
-srtfile = open("speech.srt","r")
-vttwrite = open("speech.vtt","w")
-vttwrite.write("WEBVTT\n")
+srtfile = open("static/speechEN223732531.srt","r")
+vttwrite = open("static/speechEN223732531.vtt","w")
+vttwrite.write("WEBVTT\n\n")
 for srt in srtfile.readlines():
 	try:
 		int(srt)
 	except:
-		try:
-			int(srt[0])
-			vttwrite.write(srt.replace(",",".")+"\n")
-		except:
-			vttwrite.write("- "+srt+"\n")
+		if srt.strip() == "\n":
+			pass
+		else:
+			try:
+				int(srt[0])
+				vttwrite.write(srt.replace(",","."))
+			except:
+				vttwrite.write("- "+srt+"\n")
+
 
 vttwrite.close()

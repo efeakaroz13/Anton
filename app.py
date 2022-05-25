@@ -35,14 +35,33 @@ def tts():
 		text = request.args.get("q")
 		engine.setProperty('voice', voices[42].id)
 		engine. setProperty("rate", 178)
-		filename = 'speechTR{}.mp3'.format(random.randint(1,345346456))
+		filename = './static/speechTR{}.mp3'.format(random.randint(1,345346456))
 		engine.save_to_file(text, filename)
 		engine.runAndWait()
 		os.system(f"autosub {filename} -S tr -D tr")
-		os.system(f"ffmpeg -loop 1 -i image.jpg -i {filename} -c:a copy -c:v libx264 -shortest {filename.replace('.mp3','.mp4')}")
+		os.system(f"ffmpeg -loop 1 -i image.jpg -i {filename} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest {filename.replace('.mp3','.mp4')}")
+		srtfile = open(filename.replace("mp3","srt"),"r")
+		vttwrite = open(filename.replace("mp3","vtt"),"w")
+		vttwrite.write("WEBVTT\n\n")
+		for srt in srtfile.readlines():
+			try:
+				int(srt)
+			except:
+				
+
+				try:
+					int(srt[0])
+					vttwrite.write(srt.replace(",","."))
+				except:
+					if srt.strip() == "":
+						pass
+					else:
+						vttwrite.write("- "+srt+"\n")
+
+		os.system("rm {}".format(filename.replace(".mp3","srt")))
 		return {
 			"out":filename.replace("mp3","mp4"),
-			"transcript":filename.replace("mp3","srt")
+			"transcript":filename.replace("mp3","vtt")
 		}
 	if lang == "fr":
 		#FR
@@ -52,14 +71,33 @@ def tts():
 		text = request.args.get("q")
 		engine.setProperty('voice', voices[37].id)
 		engine. setProperty("rate", 150)
-		filename = 'speechFR{}.mp3'.format(random.randint(1,345346456))
+		filename = './static/speechFR{}.mp3'.format(random.randint(1,345346456))
 		engine.save_to_file(text, filename)
 		engine.runAndWait()
 		os.system(f"autosub {filename} -S fr -D fr")
-		os.system(f"ffmpeg -loop 1 -i image.jpg -i {filename} -c:a copy -c:v libx264 -shortest {filename.replace('.mp3','.mp4')}")
+		os.system(f"ffmpeg -loop 1 -i image.jpg -i {filename} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest {filename.replace('.mp3','.mp4')}")
+		srtfile = open(filename.replace("mp3","srt"),"r")
+		vttwrite = open(filename.replace("mp3","vtt"),"w")
+		vttwrite.write("WEBVTT\n\n")
+		for srt in srtfile.readlines():
+			try:
+				int(srt)
+			except:
+				
+
+				try:
+					int(srt[0])
+					vttwrite.write(srt.replace(",","."))
+				except:
+					if srt.strip() == "":
+						pass
+					else:
+						vttwrite.write("- "+srt+"\n")
+
+		os.system("rm {}".format(filename.replace(".mp3","srt")))
 		return {
 			"out":filename.replace("mp3","mp4"),
-			"transcript":filename.replace("mp3","srt")
+			"transcript":filename.replace("mp3","vtt")
 		}
 
 	if lang == "de":
@@ -71,14 +109,33 @@ def tts():
 		text = request.args.get("q")
 		engine.setProperty('voice',voices[4].id)
 		engine. setProperty("rate", 150)
-		filename = 'speechDE{}.mp3'.format(random.randint(1,345346456))
+		filename = './static/speechDE{}.mp3'.format(random.randint(1,345346456))
 		engine.save_to_file(text, filename)
 		engine.runAndWait()
 		os.system(f"autosub {filename} -S de -D de")
-		os.system(f"ffmpeg -loop 1 -i image.jpg -i {filename} -c:a copy -c:v libx264 -shortest {filename.replace('.mp3','.mp4')}")
+		os.system(f"ffmpeg -loop 1 -i image.jpg -i {filename} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest {filename.replace('.mp3','.mp4')}")
+		srtfile = open(filename.replace("mp3","srt"),"r")
+		vttwrite = open(filename.replace("mp3","vtt"),"w")
+		vttwrite.write("WEBVTT\n\n")
+		for srt in srtfile.readlines():
+			try:
+				int(srt)
+			except:
+				
+
+				try:
+					int(srt[0])
+					vttwrite.write(srt.replace(",","."))
+				except:
+					if srt.strip() == "":
+						pass
+					else:
+						vttwrite.write("- "+srt+"\n")
+
+		os.system("rm {}".format(filename.replace(".mp3","srt")))
 		return {
 			"out":filename.replace("mp3","mp4"),
-			"transcript":filename.replace("mp3","srt")
+			"transcript":filename.replace("mp3","vtt")
 		}
 
 	if lang == "en":
@@ -95,9 +152,31 @@ def tts():
 		os.system(f"autosub {filename} -S en -D en")
 		os.system(f"ffmpeg -loop 1 -i image.jpg -i {filename} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest {filename.replace('.mp3','.mp4')}")
 		os.system("rm {}".format(filename))
+
+		srtfile = open(filename.replace("mp3","srt"),"r")
+		vttwrite = open(filename.replace("mp3","vtt"),"w")
+		vttwrite.write("WEBVTT\n\n")
+		for srt in srtfile.readlines():
+			try:
+				int(srt)
+			except:
+				
+
+				try:
+					int(srt[0])
+					vttwrite.write(srt.replace(",","."))
+				except:
+					if srt.strip() == "":
+						pass
+					else:
+						vttwrite.write("- "+srt+"\n")
+
+
+		vttwrite.close()
+		os.system("rm {}".format(filename.replace(".mp3","srt")))
 		return {
 			"out":filename.replace("mp3","mp4"),
-			"transcript":filename.replace("mp3","srt")
+			"transcript":filename.replace("mp3","vtt")
 		}
 @app.route("/textLangDetect")
 def textLangDetect():
@@ -144,6 +223,24 @@ def pyscript():
 		</body>
 		</html>
 
+	"""
+
+@app.route("/viewer/<filename>")
+def viewer(filename):
+	return f"""
+		<html>
+			<video id="video" controls preload="metadata" width="500">
+			   <source src="/static/{filename}" type="video/mp4">
+			   <track label="English" kind="subtitles" srclang="en" src="/static/{filename.replace('mp4','vtt')}" default>
+			</video>
+			<script>
+			document.getElementById("video").webkitRequestFullscreen();
+			document.getElementById("video").requestFullscreen();
+			document.getElementById("video").msRequestFullscreen();
+			document.getElementById("video").mozRequestFullScreen();
+			</script>
+
+		</html>
 	"""
 
 
