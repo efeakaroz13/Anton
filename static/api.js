@@ -4,48 +4,33 @@
 */
 
 
-function textToSpeech(content){
-	let speech = new SpeechSynthesisUtterance();
-	speech.lang = "en-US";
-    speech.text = content;
 
-    speech.volume = 0.9;
-    speech.rate = 1;
-    speech.pitch = 1;
-
-    window.speechSynthesis.speak(speech); 
-}
 function getTextOfPage(){
 	var body= document.body;
 	return body.textContent.replace("TTS","").replace("word:","");
 }
 
 
-function openSelectorMenu(){
-	if (document.getElementById("menu").style.display == "none") {
-		document.getElementById("menu").style.display = "";
-	}else{
-		document.getElementById("menu").style.display = "none";
-	}
-	
-}
+
 
 var utterance = new SpeechSynthesisUtterance();
-var wordIndex = 0;
+var wordIndex = 1;
 var global_words = [];
 utterance.lang = 'en-UK';
 utterance.rate = 1;
 
 
-document.getElementById('playbtn').onclick = function(){
+function playbtn(lang){
     var text    = getTextOfPage()
     var words   = text.split(" ");
+    utterance.lang = lang;
     global_words = words;
     // Draw the text in a div
     drawTextInPanel(words);
     spokenTextArray = words;
     utterance.text = text;
     speechSynthesis.speak(utterance);
+
 };
 
 utterance.onboundary = function(event){
@@ -57,15 +42,17 @@ utterance.onboundary = function(event){
 console.info(global_words[wordIndex]);
 
 try{
-	document.getElementById("word_span_"+wordIndex).style.color = "blue";
+	document.getElementById("word_span_"+wordIndex).style.backgroundColor = "#ec78f5";
+	document.getElementById("word_span_"+wordIndex).style.color = "white";
+
 }catch(e){}
 
 wordIndex++;
 };
 
 utterance.onend = function(){
-		document.getElementById("word").innerHTML = "";
-    wordIndex = 0;
+	document.getElementById("word").innerHTML = "";
+    wordIndex = 1;
     document.getElementById("panel").innerHTML = "";
 };
 

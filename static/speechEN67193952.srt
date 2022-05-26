@@ -1,7 +1,0 @@
-1
-00:00:00,256 --> 00:00:01,792
-Welcome to my channel guide
-
-2
-00:00:02,304 --> 00:00:04,608
-We all show that people subscribe though

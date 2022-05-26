@@ -1,7 +1,7 @@
 #Copyright (c) 2022, Efe Akaröz
 #All rights reserved.
 
-from flask import Flask,render_template,request,redirect
+from flask import Flask,render_template,request,redirect,abort
 import requests
 from textblob import TextBlob
 from deep_translator import single_detection
@@ -10,6 +10,13 @@ import random
 import pyttsx3
 import os
 
+
+requires = """
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.20.0/js/mdb.min.js" integrity="sha512-XFd1m0eHgU1F05yOmuzEklFHtiacLVbtdBufAyZwFR0zfcq7vc6iJuxerGPyVFOXlPGgM8Uhem9gwzMI8SJ5uw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://efeakaroz.pythonanywhere.com/static/enject.js"></script>
+	<script>document.body.innerHTML = document.body.innerHTML+"<button onclick='openLanguageSelector()' type='button' class='btn btn-primary btn-floating'><i class='fas fa-headphones'></i></button>"</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+"""
 
 #f2e29ae59187dddd8e935acfc34e6ba0
 
@@ -189,10 +196,10 @@ def textLangDetect():
 
 @app.route("/translate")
 def translation():
-	from_ = request.args.get("from")
+
 	to_ = request.args.get("to")
 	q = request.args.get("q")
-	out ={ "out":ts.google(q, from_language=from_, to_language=to_)}
+	out ={ "out":ts.google(q, to_language=to_)}
 	return out
 
 @app.route("/pyscript")
@@ -242,6 +249,28 @@ def viewer(filename):
 
 		</html>
 	"""
+
+@app.route("/session/tts")
+def ttsSession():
+	q = request.args.get("q")
+	lang = request.args.get("lang")
+	if lang == "tr":
+		lang = "tr-TR"
+	if lang == "en":
+		lang = "en-UK"
+	if lang == "fr":
+		lang = "fr-FR"
+	if lang == "de":
+		lang = "de-DE"
+	if lang != None:
+
+
+		return render_template("demo.html",lang=lang,q=q)
+	else:
+		return abort(500)
+@app.route("/simple.page")
+def jsthing():
+	return render_template("sample.html")
 
 
 app.run(debug=True)
