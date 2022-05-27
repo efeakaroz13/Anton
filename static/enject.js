@@ -19,22 +19,14 @@ function closeTheThing(){
 }
 
 function translateTR(){
-	$.getJSON("/translate?q="+getTextOfPage()+"&to=tr",function(data){
-		window.location.assign("http://localhost:5000/session/tts?q="+data.out.replace('x🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&lang=tr")
-	})
+	window.location.assign("/translate?q="+getTextOfPage().replace('X🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&to=tr")
 }
 function translateEN(){
-	$.getJSON("/translate?q="+getTextOfPage()+"&to=en",function(data){
-		window.location.assign("http://localhost:5000/session/tts?q="+data.out.replace('x🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&lang=en")
-	})
+	window.location.assign("/translate?q="+getTextOfPage().replace('X🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&to=en")
 }
 function translateDE(){
-	$.getJSON("/translate?q="+getTextOfPage()+"&to=de",function(data){
-		window.location.assign("http://localhost:5000/session/tts?q="+data.out.replace('x🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&lang=de")
-	})
+	window.location.assign("/translate?q="+getTextOfPage().replace('X🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&to=de")
 }
 function translateFR(){
-	$.getJSON("/translate?q="+getTextOfPage()+"&to=fr",function(data){
-		window.location.assign("http://localhost:5000/session/tts?q="+data.out.replace('x🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&lang=fr")
-	})
+	window.location.assign("/translate?q="+getTextOfPage().replace('x🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&to=fr")
 }
