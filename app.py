@@ -199,7 +199,7 @@ def textLangDetect():
 def translation():
 
 	to_ = request.args.get("to")
-	q = request.args.get("q")
+	q = request.cookies.get("textContent")
 	out ={ "out":ts.google(q, to_language=to_)}
 	return redirect("/session/tts?q="+out["out"]+"&lang="+to_)
 

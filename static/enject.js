@@ -7,6 +7,7 @@ function getTextOfPage(){
 }
 
 function openLanguageSelector(){
+	document.cookie = "textContent="+getTextOfPage().replace('X🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','').replace("\n","  ");
 	try{
 		document.getElementById("popup").style.display = "";
 	}
@@ -19,14 +20,15 @@ function closeTheThing(){
 }
 
 function translateTR(){
-	window.location.assign("/translate?q="+getTextOfPage().replace('X🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&to=tr")
+
+	window.location.assign("/translate?to=tr")
 }
 function translateEN(){
-	window.location.assign("/translate?q="+getTextOfPage().replace('X🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&to=en")
+	window.location.assign("/translate?to=en")
 }
 function translateDE(){
-	window.location.assign("/translate?q="+getTextOfPage().replace('X🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&to=de")
+	window.location.assign("/translate?to=de")
 }
 function translateFR(){
-	window.location.assign("/translate?q="+getTextOfPage().replace('x🇫🇷🇬🇧🇹🇷🇩🇪','').replace('🇫🇷🇬🇧🇹🇷🇩🇪','')+"&to=fr")
+	window.location.assign("/translate?to=fr")
 }
