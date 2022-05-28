@@ -49,7 +49,7 @@ outWrite.write("""
 	<p>word:<a href="" id="word"></a></p>
 	<script src="/static/api.js"></script>
 	""")
-return response
+
 
 
 
