@@ -17,4 +17,4 @@ And it will initialize itself.
 You can find a Turkish demo [here](https://engineen.pythonanywhere.com/the_thing) ,but don't worry it has a translator down left. To try the API enable javascript.
 
 ### Images
-![Button for runing the script](https://lh6.googleusercontent.com/xwtLddwBqOt5i-p_dYIhjE1EZaedfSKUXEXskN4U9PS1fgYnScjXeF8hiEWayK7vwpI5lfBXUsyIstHeaj2L=w1440-h745,"Button for TTS and translate options")
+![Button for runing the script](https://lh6.googleusercontent.com/xwtLddwBqOt5i-p_dYIhjE1EZaedfSKUXEXskN4U9PS1fgYnScjXeF8hiEWayK7vwpI5lfBXUsyIstHeaj2L=w1440-h745 "Button for TTS and translate options")
