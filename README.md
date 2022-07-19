@@ -18,3 +18,11 @@ You can find a Turkish demo [here](https://engineen.pythonanywhere.com/the_thing
 
 ### Images
 ![Button for runing the script](https://lh6.googleusercontent.com/xwtLddwBqOt5i-p_dYIhjE1EZaedfSKUXEXskN4U9PS1fgYnScjXeF8hiEWayK7vwpI5lfBXUsyIstHeaj2L=w1440-h745 "Button for TTS and translate options")
+
+Button for viewing options of the script
+
+
+![Options](https://lh3.googleusercontent.com/53q-qppWM6eCRo3ow5ToDxIfbduXEht8Snq0x5XCZywGyZEi_mfFv9OEfLYRyJKI50f4YCNVj2WBkyc3_ejq=w1440-h745 "Options")
+
+Language options after triggering the button
+
