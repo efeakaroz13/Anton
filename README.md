@@ -26,3 +26,10 @@ Button for viewing options of the script
 
 Language options after triggering the button
 
+## Cons and TODOs about the project
+### Character limit
+It supports upto 1000 characters right now, but in the future i will switch the get method to post and it can work on every website!
+### Theme and support
+I will make an official website for project with docs and support. Also I will provide them options to select colors.
+### Language support
+I will make more languages for this project.
